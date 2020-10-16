@@ -6,18 +6,9 @@ function Header(props) {
       <div>
         <div>
           <div className="navbar fixed-navbar">
-            <ul className="left-nav">
-              <li className="dropdown-arrow">
-                Get Going
-              </li>
-              <li>
-                Custom
-              </li>
-              <li>Mag</li>
-            </ul>
             <ul className="logo"><li>City In A Day</li></ul>
             <ul className="right-nav">
-              <li>Be a Guide</li>
+              <li>Become a Guide</li>
               <li>Sign Up</li>
               <li>
               {!isAuthenticated &&
