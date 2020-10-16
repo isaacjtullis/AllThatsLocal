@@ -9,7 +9,6 @@ function Header(props) {
             <ul className="logo"><li>City In A Day</li></ul>
             <ul className="right-nav">
               <li>Become a Guide</li>
-              <li>Sign Up</li>
               <li>
               {!isAuthenticated &&
                 <button onClick={loginWithRedirect}>Log in</button>
