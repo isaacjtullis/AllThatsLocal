@@ -1,19 +1,19 @@
 import React from "react";
 import { CardDeck, Card, Button } from 'react-bootstrap';
 import cardPhoto from './images/beachVibes.jpg'
+import TestService from './_services/test-services';
 class LocalGuide extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       testData: []
     }
+    this.TestService = new TestService();
   }
 
   componentDidMount() {
-    fetch('http://localhost:8080/testAPI/')
-      .then(response => response.json())
+    this.TestService.getTestData()
       .then(data => {
-        console.log(data);
         this.setState({ testData: data });
       })
   }
