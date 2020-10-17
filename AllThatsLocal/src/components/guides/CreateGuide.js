@@ -10,7 +10,8 @@ class CreateGuide extends React.Component {
     this.state = {
       displayForm: false,
       name: '',
-      description: ''
+      description: '',
+      validated: false
     }
   }
 
@@ -21,6 +22,11 @@ class CreateGuide extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    const form = e.currentTarget;
+    if (form.checkValidity()) {
+      // SUBMIT FORM
+    }
+    this.setState({ validated: true });
   }
 
   handleChange = (event) => {
@@ -29,7 +35,7 @@ class CreateGuide extends React.Component {
   }
 
   render() {
-    const { name, description, displayForm } = this.state;
+    const { name, description, validated, displayForm } = this.state;
     return(
       <div>
         <Container className='create-guide'>
@@ -43,6 +49,7 @@ class CreateGuide extends React.Component {
           <CreateGuideForm
             name={name}
             description={description}
+            validated={validated}
             handleSubmit={(e)=>this.handleSubmit(e)}
             handleChange={(e) => this.handleChange(e)}
           />
