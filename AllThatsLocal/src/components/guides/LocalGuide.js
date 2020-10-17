@@ -2,13 +2,14 @@ import React from "react";
 import { Container, Row, Col, CardDeck, Card } from 'react-bootstrap';
 import cardPhoto from '../../images/beachVibes.jpg'
 import TestService from '../../_services/test-services';
+import CreateGuide from './CreateGuide';
 import './LocalGuides.css';
 
 class LocalGuide extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      testData: []
+      localGuides: []
     }
     this.TestService = new TestService();
   }
@@ -16,14 +17,19 @@ class LocalGuide extends React.Component {
   componentDidMount() {
     this.TestService.getTestData()
       .then(data => {
-        this.setState({ testData: data });
+        this.setState({ localGuides: data });
       })
   }
 
-  displayTestData = () => {
-    const { testData } = this.state;
-    if (!testData ) return;
-    return testData.map((site) => {
+  updateGuides = (guide) => {
+    console.log('guide:', guide);
+    this.setState({ localGuides: [...this.state.localGuides, guide] })
+  }
+
+  displayGuides = () => {
+    const { localGuides } = this.state;
+    if (!localGuides.length === 0 ) return;
+    return localGuides.map((site) => {
       return (
         <Col md={4}>
           <Card>
@@ -40,11 +46,14 @@ class LocalGuide extends React.Component {
 
   render() {
     return(
-      <Container className='local-guides'>
-        <Row>
-          <CardDeck>{this.displayTestData()}</CardDeck>
-        </Row>
-      </Container>
+      <div>
+        <Container className='local-guides'>
+          <Row>
+            <CardDeck>{this.displayGuides()}</CardDeck>
+          </Row>
+        </Container>
+        <CreateGuide updateGuides={(data) => this.updateGuides(data)}/>
+      </div>
     );
   }
 }

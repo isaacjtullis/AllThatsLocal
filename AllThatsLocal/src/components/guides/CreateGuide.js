@@ -13,6 +13,7 @@ class CreateGuide extends React.Component {
       description: '',
       validated: false
     }
+    this.TestService = new TestService();
   }
 
   toggleForm = () => {
@@ -22,15 +23,21 @@ class CreateGuide extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    const { displayForm } = this.state;
     const form = e.currentTarget;
     if (form.checkValidity()) {
-      // SUBMIT FORM
+      const data = {}
+      data.name = this.state.name;
+      data.description = this.state.description;
+      this.TestService.createGuide(data).then(response => {
+        this.props.updateGuides(response);
+        this.setState({ name: '', description: '', displayForm: !displayForm });
+      })
     }
     this.setState({ validated: true });
   }
 
   handleChange = (event) => {
-    console.log('event:', event.target.value, event.target.name);
     this.setState({ [event.target.name]: event.target.value });
   }
 
