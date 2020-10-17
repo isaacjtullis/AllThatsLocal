@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import coverPhoto from './images/beachVibes1.jpg';
 import { useAuth0 } from '@auth0/auth0-react';
-import LocalGuide from './LocalGuide';
+import LocalGuide from './components/guides/LocalGuide';
 import Header from './Header';
 
 function App() {
